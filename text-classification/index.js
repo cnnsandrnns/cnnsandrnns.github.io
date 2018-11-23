@@ -8,11 +8,11 @@ const HOSTED_URLS = {
 
 const examples = {
   'example1':
-      'Alice was beginning to get very tired of sitting by her sister on the bank.',
+      'My heart was beating finely when we two set forth in the cold night upon this dangerous venture.',
   'example2':
-      'Buda-Pesth seems a wonderful place.',
+      'Emma Woodhouse, handsome, clever, and rich, with a comfortable home and happy disposition, seemed to unite some of the best blessings of existence; and had lived nearly twenty-one years in the world with very little to distress or vex her',
   'example3':
-      'Scepticism was as much the result of knowledge, as knowledge is of scepticism.'      
+      'The Time Traveller (for so it will be convenient to speak of him) was expounding a recondite matter to us'      
 };
 
 function status(statusText) {
