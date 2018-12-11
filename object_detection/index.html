@@ -10,7 +10,7 @@
     <button onclick="stopWebcam();">Stop WebCam</button>
     <button onclick="snapshot();">Take Snapshot</button>
     </p>
-    <video onclick="snapshot(this);" width=800 height=500 id="video" controls autoplay></video>
+    <video onclick="snapshot(this);" width=400 height=400 id="video" controls autoplay></video>
   <p>
 
         Screenshots : <p>
@@ -34,30 +34,22 @@
       //--------------------
       // GET USER MEDIA CODE
       //--------------------
-      let video;
-      let webcamStream;
+      var video;
+      var webcamStream;
 
       let constraints = {
                  video: {facingMode : "environment"},
                  audio: false
               };
 
-    function createObjectURL(file) {
-      if ( window.webkitURL ) {
-          return window.webkitURL.createObjectURL( file );
-        } else if ( window.URL && window.URL.createObjectURL ) {
-            return window.URL.createObjectURL( file );
-        } else {
-            return null;
-        }
-      }
-
       function startWebcam() {
         if (navigator.mediaDevices.getUserMedia) {
            navigator.mediaDevices.getUserMedia (constraints)
            .then(function(localMediaStream) {
-                  video = document.querySelector('video');
-                 video.src = createObjectURL(localMediaStream);
+                 video = document.querySelector('video');
+                 //video = document.createElement('video');
+                 //video.src = window.URL.createObjectURL(localMediaStream);
+                 video.srcObject = localMediaStream;
                  webcamStream = localMediaStream;
               })
             .catch(function(err) {
@@ -97,7 +89,7 @@
       //------------
 
       function printObject(o) {
-        let out = '';
+        var out = '';
         for (i = 0; i < o.length; i++) {
           for (var p in o[i]) {
             if (p != 'bbox') {
@@ -110,7 +102,7 @@
       }
 
       function tts(o) {
-        let out = '';
+        var out = '';
         for (i = 0; i < o.length; i++) {
           window.setTimeout(responsiveVoice.speak(o[i]['class'] + ' with probability ' + o[i]['score'].toFixed(2)  + ' '), 100);
           }
