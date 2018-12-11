@@ -34,20 +34,30 @@
       //--------------------
       // GET USER MEDIA CODE
       //--------------------
-      var video;
-      var webcamStream;
+      let video;
+      let webcamStream;
 
       let constraints = {
                  video: {facingMode : "environment"},
                  audio: false
               };
 
+    function createObjectURL(file) {
+      if ( window.webkitURL ) {
+          return window.webkitURL.createObjectURL( file );
+        } else if ( window.URL && window.URL.createObjectURL ) {
+            return window.URL.createObjectURL( file );
+        } else {
+            return null;
+        }
+      }
+
       function startWebcam() {
         if (navigator.mediaDevices.getUserMedia) {
            navigator.mediaDevices.getUserMedia (constraints)
            .then(function(localMediaStream) {
                   video = document.querySelector('video');
-                 video.src = window.URL.createObjectURL(localMediaStream);
+                 video.src = createObjectURL(localMediaStream);
                  webcamStream = localMediaStream;
               })
             .catch(function(err) {
@@ -87,7 +97,7 @@
       //------------
 
       function printObject(o) {
-        var out = '';
+        let out = '';
         for (i = 0; i < o.length; i++) {
           for (var p in o[i]) {
             if (p != 'bbox') {
@@ -100,7 +110,7 @@
       }
 
       function tts(o) {
-        var out = '';
+        let out = '';
         for (i = 0; i < o.length; i++) {
           window.setTimeout(responsiveVoice.speak(o[i]['class'] + ' with probability ' + o[i]['score'].toFixed(2)  + ' '), 100);
           }
