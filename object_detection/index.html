@@ -10,7 +10,7 @@
     <button onclick="stopWebcam();">Stop WebCam</button>
     <button onclick="snapshot();">Take Snapshot</button>
     </p>
-    <video onclick="snapshot(this);" width=400 height=400 id="video" controls autoplay></video>
+    <video onclick="snapshot(this);" width=800 height=500 id="video" controls autoplay></video>
   <p>
 
         Screenshots : <p>
@@ -62,7 +62,8 @@
       }
 
       function stopWebcam() {
-          webcamStream.stop();
+          webcamStream.getTracks()[0].stop();
+          webcamStream.getTracks()[1].stop();
       }
       //---------------------
       // TAKE A SNAPSHOT CODE
