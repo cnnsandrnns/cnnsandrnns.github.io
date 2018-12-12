@@ -8,7 +8,9 @@
     <title>Object Detection</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script> <!-- Load tensorflow.js -->
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script> <!-- Load the text to speech API -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script> <!-- Load the pre-trained model -->
 </head>
 
 <body onload="init();">
@@ -23,7 +25,7 @@
         0. If using a mobile device, please orient your phone in landscape mode <br>
         1. Click on "Start Webcam" <br>
         2. Point Camera at scene of interest and click "Take Snapshot" <br>
-        3. Click on "Stop Webcam" <br>
+        3. Click on "Stop Webcam" to stop webbcam feed (optional)<br>
         4. Scroll Down and click on "Detect Objects"
     </div>
 
@@ -41,12 +43,12 @@
     <!-- Canvas -->
     <div class="container-fluid">
         <h4>Snapshot:</h4>
-        <canvas  id="myCanvas" width=600 height=400></canvas>
+        <canvas id="myCanvas" width=600 height=400></canvas>
     </div>
 
     <!-- Detect Objects Button -->
     <div class="container-fluid" style="padding-top: 1em; padding-bottom: 1em;">
-        <button class="btn btn-default" onclick="detect_objects();"> Detect Objects</button>
+        <button class="btn btn-primary btn-lg" onclick="detect_objects();"> Detect Objects</button>
     </div>
 
 
@@ -60,11 +62,6 @@
     <div class="container-fluid">
         <p id="showPreds"> </p>
     </div>
-    
-
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script> <!-- Load tensorflow.js -->
-    <script src='https://code.responsivevoice.org/responsivevoice.js'></script> <!-- Load the text to speech API -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script> <!-- Load the pre-trained model -->
 
     <!-- All the JS -->
     <script>
